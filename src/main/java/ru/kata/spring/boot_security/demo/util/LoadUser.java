@@ -35,22 +35,20 @@ public class LoadUser {
         roleService.addRole(roleUser);
 
         adminSet.add(roleAdmin);
-        adminSet.add(roleUser);
+        userSet.add(roleUser);
 
 
         User admin = new User("Boris", "Borisov", 25, "email@ru.ru","BorisKata",
                 "100", adminSet);
 
         User user = new User("Ivan", "Ivanov", 20, "emai1l@ru.ru", "IvanKata",
-              "50", adminSet);
+              "50", userSet);
 
-        User userOne = new User("Vasya", "Vasilev", 20 , "emai2@ru.ru", "VasyaKata",
-                "50", adminSet);
 
 
         userService.saveUser(admin);
         userService.saveUser(user);
-        userService.saveUser(userOne);
+
 
 
     }
