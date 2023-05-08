@@ -41,7 +41,7 @@ public class LoadUser {
         User admin = new User("Boris", "Borisov", 25, "email@ru.ru","BorisKata",
                 "100", adminSet);
 
-        User user = new User("Ivan", "Ivanov", 20, "emai1l@ru.ru", "IvanKata",
+        User user = new User("Ivan", "Ivanov", 20, "email2@ru.ru", "IvanKata",
               "50", userSet);
 
 
