@@ -19,11 +19,17 @@ public class UserServiceImpl implements UserService {
     private final UserDao userDao;
     private final PasswordEncoder passwordEncoder;
 
+
+
+
+
+
    @Autowired
     public UserServiceImpl(UserDao userDao, PasswordEncoder passwordEncoder) {
         this.userDao = userDao;
-         this.passwordEncoder = passwordEncoder;
-    }
+        this.passwordEncoder = passwordEncoder;
+
+   }
 
     private User encryptUserPassword(User user){
        user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -50,6 +56,8 @@ public void saveUser(User user) {
     public void updateUser(User updateUser) {
     userDao.updateUser(encryptUserPassword(updateUser));
     }
+
+
 
 
 //    @Override
@@ -100,6 +108,7 @@ public void saveUser(User user) {
     public User getUserByLogin(String login) {
         return userDao.findByLogin(login);
     }
+
 
 
     @Override
