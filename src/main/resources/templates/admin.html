@@ -97,9 +97,13 @@
                                                th:data-bs-target="${'#editModal'+ user.getId()}">Edit</a>
                                         </td>
                                         <td>
-                                            <form th:action="@{/admin/{id}(id=${user.id})}" th:method="DELETE">
-                                                <button type="submit" class="btn btn-danger">Delete</button>
-                                            </form>
+
+                                            <a type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                               data-bs-target="#DELETE"
+                                               th:data-bs-target="${'#DELETE'+ user.getId()}">Delete</a>
+<!--                                            <form th:action="@{/admin/{id}(id=${user.id})}" th:method="DELETE">--> 
+<!--                                                <button type="submit" class="btn btn-danger">Delete</button>-->
+<!--                                            </form>-->
                                         </td>
                                         <!-- кнопки edit и delete на странице admin-->
 
@@ -201,7 +205,7 @@
                                                     <!--  модальное окно DELETE на странице админа-->
 
                                                     <form class="modal-body col-md text-center"
-                                                          th:action="@{/admin(id=${user.getId()})}"
+                                                          th:action="@{/admin/{id}(id=${user.id})}"
                                                           th:method="DELETE">
 
                                                         <!--  данные для удаления в окне-->
