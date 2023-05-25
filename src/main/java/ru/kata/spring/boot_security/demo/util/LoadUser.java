@@ -40,11 +40,11 @@ public class LoadUser {
         userSet.add(roleUser);
 
 
-        User admin = new User("Boris", "Borisov", 25, "email@ru.ru","BorisKata",
-                "100", adminSet);
+        User admin = new User("James", "Bond", 35, "007@email.ru","JamesBond007",
+                "007", adminSet);
 
-        User user = new User("Ivan", "Ivanov", 20, "email2@ru.ru", "IvanKata",
-                "50", userSet);
+        User user = new User("Vesper", "Lynd", 32, "Vesper@email.ru", "VesperLynd",
+                "001", userSet);
 
 
 

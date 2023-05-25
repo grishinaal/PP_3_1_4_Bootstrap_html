@@ -32,10 +32,6 @@ public class UserServiceImpl implements UserService {
        return user;
     }
 
-
-    /*
-     3.1.4 - обновлён метод saveUser
-     */
 @Override
 @Transactional
 public void saveUser(User user) {
@@ -53,31 +49,6 @@ public void saveUser(User user) {
     userDao.updateUser(encryptUserPassword(updateUser));
     }
 
-
-
-
-//    @Override
-//    @Transactional
-//    public void updateUser(User updateUser) {
-//        userDao.updateUser(updateUser);
-//
-//    }
-
-/*  под вопросом  метод updateUser
-
-
-    @Override
-    @Transactional
-    public void updateUser(User updateUser) {
-        if(updateUser.getPassword() == null || updateUser.getPassword().isEmpty()) {
-            User existingUser = userDao.getUserById(updateUser.getId());
-            updateUser.setPassword(existingUser.getPassword());
-        } else {
-            updateUser.setPassword(passwordEncoder.encode(updateUser.getPassword()));
-        }
-        userDao.updateUser(updateUser);
-    }
- */
     @Override
     @Transactional
     public void removeUserById(Long id) {

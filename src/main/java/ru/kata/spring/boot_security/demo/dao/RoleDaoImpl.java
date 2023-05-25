@@ -13,7 +13,7 @@ import java.util.Set;
 public class RoleDaoImpl implements RoleDao{
     @PersistenceContext
     private EntityManager entityManager;
-/// 3
+
     @Override
     public Role getRoleByName(String roleName) {
         TypedQuery<Role> roleTypedQuery = (entityManager.createQuery("SELECT r FROM Role r " +
