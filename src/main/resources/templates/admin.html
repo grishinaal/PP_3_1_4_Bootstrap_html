@@ -18,7 +18,8 @@
     <div class="container-fluid">
         <p class="navbar-brand text-white">
             <b><span class="align-middle" th:text="${user.getLogin()}"></span></b>
-            <span class="align-middle"> with roles:  <span th:each="role: ${user.getRoles()}" th:text="${#strings.substringAfter(role.getRoleName(), '_')} + ' '"></span></span>
+            <span class="align-middle"> with roles:  <span th:each="role: ${user.getRoles()}"
+                                                           th:text="${#strings.substringAfter(role.getRoleName(), '_')} + ' '"></span></span>
         </p>
         <form th:action="@{/logout}" method="post">
             <button type="submit" class="btn btn-dark text-secondary">Logout</button>
@@ -101,9 +102,9 @@
                                             <a type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                                data-bs-target="#DELETE"
                                                th:data-bs-target="${'#DELETE'+ user.getId()}">Delete</a>
-<!--                                            <form th:action="@{/admin/{id}(id=${user.id})}" th:method="DELETE">--> 
-<!--                                                <button type="submit" class="btn btn-danger">Delete</button>-->
-<!--                                            </form>-->
+                                            <!--                                            <form th:action="@{/admin/{id}(id=${user.id})}" th:method="DELETE">-->
+                                            <!--                                                <button type="submit" class="btn btn-danger">Delete</button>-->
+                                            <!--                                            </form>-->
                                         </td>
                                         <!-- кнопки edit и delete на странице admin-->
 
@@ -126,7 +127,7 @@
                                                         <div class="modal-body col-md text-center">
                                                             <br>
                                                             <label for="idNull"><b>ID</b></label>
-                                                            <input th:name="id"  th:type="text"
+                                                            <input th:name="id" th:type="text"
                                                                    class="form-control" id="idNull"
                                                                    th:value="${user.getId()}" disabled/>
                                                             <br>
@@ -151,19 +152,24 @@
                                                                    th:value="${user.getEmail()}"/>
                                                             <br>
                                                             <label for="loginNull"><b>Login</b></label>
-                                                            <input th:name="login"  th:type="text"
+                                                            <input th:name="login" th:type="text"
                                                                    class="form-control" id="loginNull"
                                                                    th:value="${user.getLogin()}"/>
                                                             <br>
                                                             <label for="passwordNull"><b>Password</b></label>
                                                             <input th:name="password" type="password"
-                                                                   class="form-control" id="passwordNull" autocomplete="off"/>
+                                                                   class="form-control" id="passwordNull"
+                                                                   autocomplete="off"/>
                                                             <br>
                                                             <!--  данные для редактирования в окне EDIT-->
 
                                                             <div class="roles-select-container">
                                                                 <div class="roles-select">
-                                                                    <label for="roles"></label><select id="roles" th:field="*{roles}" size="2" style="width: 5cm" multiple>
+                                                                    <label for="roles"></label><select id="roles"
+                                                                                                       th:field="*{roles}"
+                                                                                                       size="2"
+                                                                                                       style="width: 5cm"
+                                                                                                       multiple>
                                                                     <option value="ROLE_USER">USER</option>
                                                                     <option value="ROLE_ADMIN">ADMIN</option>
                                                                 </select>
@@ -180,7 +186,8 @@
                                                             <button type="submit" class="btn btn-primary">
                                                                 Edit
                                                             </button>
-                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                    data-bs-dismiss="modal">
                                                                 Close
                                                             </button>
                                                         </div>
@@ -233,12 +240,14 @@
                                                             <label for="emailOne"><b>Email</b></label>
                                                             <input th:name="email" th:type="text"
                                                                    class="form-control"
-                                                                   id="emailOne" th:value="${user.getEmail()}" disabled/>
+                                                                   id="emailOne" th:value="${user.getEmail()}"
+                                                                   disabled/>
                                                             <br>
                                                             <label for="loginOne"><b>Login</b></label>
                                                             <input th:name="login" th:type="text"
                                                                    class="form-control"
-                                                                   id="loginOne" th:value="${user.getLogin()}" disabled/>
+                                                                   id="loginOne" th:value="${user.getLogin()}"
+                                                                   disabled/>
                                                             <br>
                                                         </div>
                                                         <!--  данные для удаления в окне Delete -->

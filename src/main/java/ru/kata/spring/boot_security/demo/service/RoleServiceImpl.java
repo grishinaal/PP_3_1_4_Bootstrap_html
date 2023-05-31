@@ -12,7 +12,7 @@ import java.util.Set;
 
 @Service
 @Transactional
-public class RoleServiceImpl implements RoleService{
+public class RoleServiceImpl implements RoleService {
     private final RoleDao roleDao;
 
     @Autowired
@@ -21,16 +21,19 @@ public class RoleServiceImpl implements RoleService{
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Role getRoleById(Long id) {
         return roleDao.getRoleById(id);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Set<Role> getAllRoles() {
         return roleDao.getAllRoles();
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Set<Role> getListRoleById(List<Long> roles) {
         return roleDao.getListRoleById(roles);
     }
@@ -42,6 +45,7 @@ public class RoleServiceImpl implements RoleService{
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Role getRoleByName(String roleName) {
         return roleDao.getRoleByName(roleName);
     }

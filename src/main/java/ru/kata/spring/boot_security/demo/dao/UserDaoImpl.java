@@ -2,13 +2,14 @@ package ru.kata.spring.boot_security.demo.dao;
 
 import org.springframework.stereotype.Repository;
 import ru.kata.spring.boot_security.demo.model.User;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
-public class UserDaoImpl implements UserDao{
+public class UserDaoImpl implements UserDao {
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -21,7 +22,8 @@ public class UserDaoImpl implements UserDao{
     @Override
     public void removeUserById(Long id) {
         User user = entityManager.find(User.class, id);
-        if (user != null) {entityManager.remove(user);
+        if (user != null) {
+            entityManager.remove(user);
         }
     }
 

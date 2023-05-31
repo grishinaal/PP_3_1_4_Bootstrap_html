@@ -20,33 +20,33 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
 
 
-   @Autowired
+    @Autowired
     public UserServiceImpl(UserDao userDao, PasswordEncoder passwordEncoder) {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
 
-   }
-
-    private User encryptUserPassword(User user){
-       user.setPassword(passwordEncoder.encode(user.getPassword()));
-       return user;
     }
 
-@Override
-@Transactional
-public void saveUser(User user) {
-    if(user.getPassword() == null || user.getPassword().isEmpty()) {
-        throw new IllegalArgumentException("Пароль не может быть пустым");
+    private User encryptUserPassword(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        return user;
     }
-    String encodedPassword = passwordEncoder.encode(user.getPassword());
-    user.setPassword(encodedPassword);
-    userDao.saveUser(user);
-}
+
+    @Override
+    @Transactional
+    public void saveUser(User user) {
+        if (user.getPassword() == null || user.getPassword().isEmpty()) {
+            throw new IllegalArgumentException("Пароль не может быть пустым");
+        }
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
+        userDao.saveUser(user);
+    }
 
     @Override
     @Transactional
     public void updateUser(User updateUser) {
-    userDao.updateUser(encryptUserPassword(updateUser));
+        userDao.updateUser(encryptUserPassword(updateUser));
     }
 
     @Override
@@ -57,6 +57,7 @@ public void saveUser(User user) {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<User> getAllUsers() {
         List<User> users = userDao.getAllUsers();
         for (User user : users) {
@@ -66,16 +67,17 @@ public void saveUser(User user) {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public User getUserById(Long id) {
         return userDao.getUserById(id);
     }
 
 
     @Override
+    @Transactional(readOnly = true)
     public User getUserByLogin(String login) {
         return userDao.findByLogin(login);
     }
-
 
 
     @Override

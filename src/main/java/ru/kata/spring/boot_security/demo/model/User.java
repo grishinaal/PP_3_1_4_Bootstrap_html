@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -28,15 +29,14 @@ public class User implements UserDetails {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "login")
+    @Column(name = "login", unique = true)
     private String login;
-
 
     @Column(name = "password")
     private String password;
 
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-    @JoinTable(name = "users_roles", joinColumns = @JoinColumn (name = "user_id"), inverseJoinColumns = @JoinColumn (name = "role_id"))
+    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
 
@@ -48,6 +48,9 @@ public class User implements UserDetails {
         this.login = login;
         this.password = password;
         this.roles = roles;
+    }
+
+    public User() {
     }
 
     public Set<Role> getRoles() {
@@ -64,18 +67,6 @@ public class User implements UserDetails {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public User() {
-    }
-
-    public User(String name, String lastName, Integer age, String login, String password, Set<Role> roles) {
-        this.name = name;
-        this.lastName = lastName;
-        this.age = age;
-        this.login = login;
-        this.password = password;
-        this.roles = roles;
     }
 
     public long getId() {
@@ -109,6 +100,7 @@ public class User implements UserDetails {
     public void setAge(Integer age) {
         this.age = age;
     }
+
     public String getLogin() {
         return login;
     }
@@ -167,5 +159,18 @@ public class User implements UserDetails {
                 ", password='" + password + '\'' +
                 ", roles=" + roles +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id == user.id && Objects.equals(name, user.name) && Objects.equals(lastName, user.lastName) && Objects.equals(age, user.age) && Objects.equals(email, user.email) && Objects.equals(login, user.login) && Objects.equals(password, user.password) && Objects.equals(roles, user.roles);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, lastName, age, email, login, password, roles);
     }
 }

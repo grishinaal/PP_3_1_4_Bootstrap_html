@@ -26,7 +26,7 @@ public class AdminController {
 
 
     @GetMapping(value = "")
-    public  String  index(@AuthenticationPrincipal User user, Model model){
+    public String index(@AuthenticationPrincipal User user, Model model) {
         model.addAttribute("users", userService.getAllUsers());
         model.addAttribute("user", user);
         model.addAttribute("roles", roleService.getAllRoles());
@@ -50,9 +50,8 @@ public class AdminController {
     }
 
 
-
     @PostMapping("/new")
-    public String create(@ModelAttribute("user") User user, BindingResult result, Model model ) {
+    public String create(@ModelAttribute("user") User user, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "new";
         }
@@ -64,14 +63,13 @@ public class AdminController {
 
     @PatchMapping("{id}")
     public String update(@ModelAttribute("user") User user) {
-        if(user.getRoles() == null || user.getRoles().isEmpty()){
+        if (user.getRoles() == null || user.getRoles().isEmpty()) {
             User newUser = userService.getUserById(user.getId());
             user.setRoles(newUser.getRoles());
         }
         userService.updateUser(user);
         return "redirect:/admin";
     }
-
 
 
     @DeleteMapping("{id}")

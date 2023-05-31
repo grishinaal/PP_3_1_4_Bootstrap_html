@@ -9,8 +9,9 @@ import javax.persistence.TypedQuery;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 @Repository
-public class RoleDaoImpl implements RoleDao{
+public class RoleDaoImpl implements RoleDao {
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -18,9 +19,10 @@ public class RoleDaoImpl implements RoleDao{
     public Role getRoleByName(String roleName) {
         TypedQuery<Role> roleTypedQuery = (entityManager.createQuery("SELECT r FROM Role r " +
                 "WHERE r.roleName= :roleName", Role.class));
-        roleTypedQuery.setParameter("roleName",roleName);
+        roleTypedQuery.setParameter("roleName", roleName);
         return roleTypedQuery.getResultList().stream().findFirst().orElse(null);
     }
+
     @Override
     public Set<Role> getListRoleById(List<Long> roles) {
         TypedQuery<Role> roleTypedQuery = entityManager.createQuery
@@ -34,7 +36,7 @@ public class RoleDaoImpl implements RoleDao{
         return (Role) entityManager.createQuery("SELECT r FROM Role r WHERE r.id = :id")
                 .setParameter("id", id).getResultList().get(0);
 
-}
+    }
 
 
     @Override
@@ -44,11 +46,9 @@ public class RoleDaoImpl implements RoleDao{
 
     @Override
     public void addRole(Role role) {
-        entityManager.persist(role);
+        entityManager.merge(role);
 
     }
-
-
 
 
 }
